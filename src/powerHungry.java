@@ -33,14 +33,29 @@ public class powerHungry {
             }
 
         } else {
-            xsList.remove(0);
+            List<Integer> negatives = new ArrayList<>();
+
+            for(int negative: xsList)
+            {
+                if(negative < 0)
+                {
+                negatives.add(negative);
+                }
+            }
+            Collections.sort(negatives);
+            int lastElement = negatives.size() - 1;
+            negatives.remove(lastElement);
 
             for (int j = 0; j < xsList.size(); j++) {
-                if (xsList.get(j) == 0) {
+                if (xsList.get(j) <= 0) {
                     xsList.set(j, 1);
                 }
 
                 product *= xsList.get(j);
+            }
+
+            for (Integer negative : negatives) {
+                product *= negative;
             }
 
 
